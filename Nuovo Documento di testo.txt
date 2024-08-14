@@ -1,0 +1,39 @@
+Osservazione: Difensore - Tipo 1: FLYING, Tipo 2: GRASS
+Azione: Attaccante - Tipo: ICE
+Ricompensa: 500
+
+Osservazione: Difensore - Tipo 1: ROCK, Tipo 2: FLYING
+Azione: Attaccante - Tipo: ROCK
+Ricompensa: 50
+
+Osservazione: Difensore - Tipo 1: FIGHTING, Tipo 2: STEEL
+Azione: Attaccante - Tipo: GROUND
+Ricompensa: 50
+
+Osservazione: Difensore - Tipo 1: PSYCHIC, Tipo 2: GRASS
+Azione: Attaccante - Tipo: ICE
+Ricompensa: 50
+
+Osservazione: Difensore - Tipo 1: ELECTRIC, Tipo 2: ROCK
+Azione: Attaccante - Tipo: GROUND
+Ricompensa: 500
+
+Osservazione: Difensore - Tipo 1: FIGHTING, Tipo 2: FIRE
+Azione: Attaccante - Tipo: GROUND
+Ricompensa: 50
+
+Osservazione: Difensore - Tipo 1: ELECTRIC, Tipo 2: FIRE
+Azione: Attaccante - Tipo: GROUND
+Ricompensa: 500
+
+Osservazione: Difensore - Tipo 1: DRAGON, Tipo 2: FIGHTING
+Azione: Attaccante - Tipo: ICE
+Ricompensa: 50
+
+Osservazione: Difensore - Tipo 1: BUG, Tipo 2: DRAGON
+Azione: Attaccante - Tipo: ROCK
+Ricompensa: 50
+
+Osservazione: Difensore - Tipo 1: ROCK, Tipo 2: BUG
+Azione: Attaccante - Tipo: ROCK
+Ricompensa: 50
