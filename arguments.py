@@ -21,6 +21,8 @@ def get_args():
 	parser.add_argument('--mode', dest='mode', type=str, default='train')                       # can be 'train' or 'test'
 	parser.add_argument('--model_path', dest='model_path', type=str, default='ppo_pokemon_type')
 	parser.add_argument('--timesteps', dest='total_timesteps', type=int, default='500_000')
+	parser.add_argument('--type1', dest='type1', type=int)
+	parser.add_argument('--type2', dest='type2', type=int)
 
 	args = parser.parse_args()
 

@@ -21,6 +21,21 @@ def main(args):
         model.save(model_path)
         env.close()
         return
+    elif args.mode == 'special_test':
+        if args.type1 is None or args.type2 is None:
+            print("Devi inserire i tipi per fare il test speciale")
+            return
+        
+        if os.path.isfile(f"{model_path}.zip"):
+            print(f"File del modello trovato: {model_path}. Caricamento del modello...")
+            # Carica il modello esistente
+            model = PPO.load(model_path, env)
+        else:
+            print("File del modello non trovato. Creazione di un nuovo modello...")
+            # Crea un nuovo modello
+            model = PPO("MlpPolicy", env, verbose=1)
+        
+        PokemonTypePPOTest.special_test(model, env, args.type1, args.type2)
     else:
         if os.path.isfile(f"{model_path}.zip"):
             print(f"File del modello trovato: {model_path}. Caricamento del modello...")
