@@ -22,7 +22,24 @@ class PokemonType(Enum):
     FAIRY       = 18
 
     @staticmethod
-    def interaction(defender_type1, defender_type2, attacker_type):
+    def max_multiplier(defender_type1, defender_type2) -> int:
+        if PokemonType.has_supereffective(defender_type1, defender_type2, 4):
+            return 4
+        elif PokemonType.has_supereffective(defender_type1, defender_type2, 2):
+            return 2
+        return 1
+        
+
+    @staticmethod
+    def has_supereffective(defender_type1, defender_type2, mult) -> bool:
+        ret = False
+        for attacker_type in PokemonType:
+            ret = ret or PokemonType.interaction(defender_type1, defender_type2, attacker_type) == mult
+        
+        return ret
+
+    @staticmethod
+    def interaction(defender_type1, defender_type2, attacker_type) -> float:
         """Calcola il moltiplicatore dell'attacco basato sui tipi dei Pokémon."""
         # Definizione delle interazioni tra i tipi
         type_chart = {
@@ -158,3 +175,4 @@ class PokemonType(Enum):
             return multiplier1
         
         return multiplier1 * multiplier2
+    
