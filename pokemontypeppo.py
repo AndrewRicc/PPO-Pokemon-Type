@@ -1,6 +1,6 @@
 import gym
 import numpy as np
-from pokemontype import PokemonType
+from pokemon.pokemontype import PokemonType
 from stable_baselines3 import PPO
 
 # Definisci l'ambiente custom
@@ -54,8 +54,11 @@ class PokemonTypePPO(gym.Env):
         else:
             reward = 0
 
-        # Definisce la fine dell'episodio, qui sempre True
         done = True
+
+        if not done:
+            reward -= 50
+        
 
         # Nessuna informazione extra
         info = {}

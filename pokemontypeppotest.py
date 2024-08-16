@@ -1,5 +1,5 @@
 
-from pokemontype import PokemonType
+from pokemon.pokemontype import PokemonType
 from stable_baselines3 import PPO
 from pokemontypeppo import PokemonTypePPO
 

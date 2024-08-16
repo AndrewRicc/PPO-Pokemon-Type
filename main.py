@@ -3,6 +3,7 @@ from arguments import get_args
 from stable_baselines3 import PPO
 from pokemontypeppo import PokemonTypePPO
 from pokemontypeppotest import PokemonTypePPOTest
+from stable_baselines3.common.env_util import make_vec_env
 
 def main(args):
     model_path = args.model_path
@@ -16,8 +17,8 @@ def main(args):
         else:
             print("File del modello non trovato. Creazione di un nuovo modello...")
             # Crea un nuovo modello
-            model = PPO("MlpPolicy", env, verbose=1)
-        model.learn(total_timesteps=args.total_timesteps)
+            model = PPO("MlpPolicy", env, n_epochs=4, verbose=1, device='cuda')
+        model.learn(total_timesteps=args.total_timesteps, progress_bar=True)
         model.save(model_path)
         env.close()
         return
