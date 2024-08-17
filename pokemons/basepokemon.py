@@ -1,11 +1,12 @@
 import math
+import random
 from typing import List
+from pokemons.pokemonmove import PokemonMove
+from pokemons.pokemonstatus import PokemonStatus
+from pokemons.pokemontype import PokemonType
 
-from pokemon.pokemontype import PokemonType
-from pokemon.pokemonmove import PokemonMove
 
-
-class Pokemon():
+class BasePokemon():
     def __init__(
         self,
         name: str,
@@ -13,6 +14,7 @@ class Pokemon():
         type1: PokemonType,
         type2: PokemonType = PokemonType.NONE,
         nature: str = "hardy",
+        status: PokemonStatus = PokemonStatus.NONE,
         lvl: int = 1,
         moves: List[PokemonMove] = [],
         b_hp: int = 1,
@@ -61,6 +63,11 @@ class Pokemon():
             'careful', 
             'quirky'
         ]
+
+        if nature.lower() == 'random':
+            rand_index = random.randint(0, len(all_natures) - 1)
+            nature = all_natures[rand_index]
+
         if lvl < 1:
             raise TypeError("Non puoi essere di livello inferiore a 1")
         if lvl > 100:
@@ -116,6 +123,7 @@ class Pokemon():
         self.lvl = lvl
 
         self.nature = nature.lower()
+        self.status = status
         self.type1 = type1
         self.type2 = type2
         self.moves = moves
@@ -170,6 +178,11 @@ class Pokemon():
         self.spe = math.floor(((((2 * self.b_spe + self.iv_spe + (self.ev_spe / 4)) * self.lvl) / 100) + 5) * self.spe_nature)
 
         self.hp = self.max_hp
+        self.v_atk = self.atk
+        self.v_def = self.defe
+        self.v_atk_sp = self.atk_sp
+        self.v_def_sp = self.def_sp
+        self.v_spe = self.spe
 
     def __str__(self) -> str:
         message = f"{self.name}:\n"
@@ -189,5 +202,3 @@ class Pokemon():
         message += f"\tMove 4: {self.moves[3]}\n" if len(self.moves) >= 4 else ""
 
         return message
-    
-    

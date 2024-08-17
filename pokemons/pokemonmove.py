@@ -1,4 +1,4 @@
-from pokemon.pokemontype import PokemonType
+from pokemons.pokemontype import PokemonType
 
 
 class PokemonMove():
