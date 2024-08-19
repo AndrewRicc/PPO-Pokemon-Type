@@ -10,6 +10,8 @@ class PokemonMove():
         accuracy: int,
         is_physic: bool
     ):
+        if base_p == None:
+            base_p = 0
         self.name = name
         self.type = type
         self.base_p = base_p
