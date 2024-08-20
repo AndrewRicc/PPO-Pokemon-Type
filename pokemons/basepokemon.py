@@ -1,5 +1,6 @@
 import math
 import random
+import colorama
 from typing import List
 from pokemons.pokemonmove import PokemonMove
 from pokemons.pokemonstatus import PokemonStatus
@@ -196,9 +197,35 @@ class BasePokemon():
         message += f"\tAtk_SP: {self.atk_sp}\n"
         message += f"\tDef_SP: {self.def_sp}\n"
         message += f"\tSpe: {self.spe}\n"
-        message += f"\tMove 1: {self.moves[0]}\n" if len(self.moves) >= 1 else ""
-        message += f"\tMove 2: {self.moves[1]}\n" if len(self.moves) >= 2 else ""
-        message += f"\tMove 3: {self.moves[2]}\n" if len(self.moves) >= 3 else ""
-        message += f"\tMove 4: {self.moves[3]}\n" if len(self.moves) >= 4 else ""
-
+        for index in range(len(self.moves)):
+            message += f"\tMove {index + 1}: {self.moves[index]}\n"
+        
         return message
+    
+    def print_life(self, decimals = 1, length = 100, fill = '█', printEnd = "\r", percent = False):
+        """
+        Call in a loop to create terminal progress bar
+        @params:
+            iteration   - Required  : current iteration (Int)
+            total       - Required  : total iterations (Int)
+            prefix      - Optional  : prefix string (Str)
+            suffix      - Optional  : suffix string (Str)
+            decimals    - Optional  : positive number of decimals in percent complete (Int)
+            length      - Optional  : character length of bar (Int)
+            fill        - Optional  : bar fill character (Str)
+            printEnd    - Optional  : end character (e.g. "\r", "\r\n") (Str)
+        """
+        if percent:
+            percent = ("{0:." + str(decimals) + "f}").format(100 * (self.hp / float(self.max_hp)))
+        filledLength = int(length * self.hp // self.max_hp)
+        bar = fill * filledLength + '-' * (length - filledLength)
+        color = colorama.Fore.GREEN
+        if 20 < self.hp / self.max_hp * 100 <= 50:
+            color = colorama.Fore.YELLOW
+        elif self.hp / self.max_hp * 100 <= 20:
+            color = colorama.Fore.RED
+
+        if not percent:
+            print(f'\r{self.name}:' + color + f' |{bar}| ' + colorama.Fore.WHITE + f'{self.hp} / {self.max_hp} PS', end = printEnd)
+        else:
+            print(f'\r{self.name}:' + color + f' |{bar}| ' + colorama.Fore.WHITE + f'{percent}%', end = printEnd)

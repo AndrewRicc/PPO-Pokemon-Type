@@ -8,8 +8,8 @@ class PokemonBattle():
         done = False
 
         while not done:
-            print(f"{user_pokemon.name} - You: {user_pokemon.hp} / {user_pokemon.max_hp} PS")
-            print(f"{enemy_pokemon.name} - Enemy: {enemy_pokemon.hp} / {enemy_pokemon.max_hp} PS")
+            user_pokemon.print_life(length=50, percent=False, printEnd='\n')
+            enemy_pokemon.print_life(length=50, percent=True, printEnd='\n')
             print()
             print("1. Lotta")
             print("2. Stats")
@@ -22,12 +22,10 @@ class PokemonBattle():
                 print()
                 continue
             if choise == 1:
-                print(f"1. {user_pokemon.moves[0].name} - {user_pokemon.moves[0].type.name}")
-                print(f"2. {user_pokemon.moves[1].name} - {user_pokemon.moves[1].type.name}")
-                print(f"3. {user_pokemon.moves[2].name} - {user_pokemon.moves[2].type.name}")
-                print(f"4. {user_pokemon.moves[3].name} - {user_pokemon.moves[3].type.name}")
-                print("5. Esci")
-                fight_input = input("Cosa vuoi fare? [1 - 5]: ")
+                for index in range(len(user_pokemon.moves)):
+                    print(f"{index + 1}. {user_pokemon.moves[index].name} - {user_pokemon.moves[index].type.name}")
+                print(f"{len(user_pokemon.moves) + 1}. Esci")
+                fight_input = input(f"Cosa vuoi fare? [1 - {len(user_pokemon.moves) + 1}]: ")
                 fight_choise = 0
                 try:
                     fight_choise = int(fight_input)
@@ -36,7 +34,7 @@ class PokemonBattle():
                     print()
                     continue
                 
-                if 0 < fight_choise < 5:
+                if 0 < fight_choise < len(user_pokemon.moves) + 1:
                     user_move_index = fight_choise
             elif choise == 2:
                 print("Il tuo Pokemon: ")

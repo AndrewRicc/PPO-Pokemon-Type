@@ -26,7 +26,7 @@ def get_pokemon(name: str) -> Pokemon:
         data: dict = response.json()
 
         moves: PokemonMove = []
-        data['moves'] = random.sample(data['moves'], 4)
+        data['moves'] = random.sample(data['moves'], min(len(data['moves']), 4))
 
         for move in data['moves']:
             moves.append(get_move(move['move']['url']))
